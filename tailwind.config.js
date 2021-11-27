@@ -56,11 +56,22 @@ module.exports = {
       lg: '1.25rem',
       xl: '1.375rem',
       '2xl': '1.625rem',
-      '3xl': '2.25rem'
+      '3xl': '2.25rem',
+      '5xl': '4rem'
     },
     fontWeight: {
       regular: 500,
       bold: 700
+    },
+    spacing: {
+      1: '0.125rem',
+      2: '0.25rem',
+      3: '0.5rem',
+      4: '1rem',
+      5: '1.125rem',
+      6: '1.5rem',
+      7: '1.75rem',
+      8: '2rem'
     },
     textColor: (theme) => theme('colors')
   },
