@@ -9,5 +9,6 @@
 html,
 body {
   font-family: 'Lato', 'sans-serif' !important;
+  @apply text-dark-slate;
 }
 </style>
