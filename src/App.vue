@@ -6,4 +6,8 @@
 
 <style lang="scss">
 @import '@/assets/scss/index';
+html,
+body {
+  font-family: 'Lato', 'sans-serif' !important;
+}
 </style>
