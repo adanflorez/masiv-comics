@@ -1,9 +1,9 @@
-import { AxiosInstance } from 'axios';
+import Response from '@/interfaces/response';
 import api from '../axios';
 
 class ComicServices {
-  getComic(): Promise<AxiosInstance> {
-    return api.get('/615/info.0.json');
+  getComic(): Promise<Response> {
+    return api.get('/2500/info.0.json');
   }
 }
 
