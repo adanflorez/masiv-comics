@@ -4,7 +4,14 @@
       <h1 class="text-3xl text-center text-default-secondary mb-4">
         {{ comic.title }}
       </h1>
-      <img :src="comic.img" :alt="comic.alt" />
+      <div
+        v-lazy-container="{
+          selector: 'img',
+          error: placeholder
+        }"
+      >
+        <img :data-src="comic.img" :alt="comic.alt" />
+      </div>
     </div>
   </div>
 </template>
@@ -23,6 +30,14 @@ export default Vue.extend({
       required: true,
       type: Object
     } as PropOptions<IComic>
+  },
+  computed: {
+    /**
+     * returns a generic image in case of API error
+     */
+    placeholder(): string {
+      return require('@/assets/img/placeholder.png');
+    }
   }
 });
 </script>
