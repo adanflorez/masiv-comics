@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+  <div class="home flex justify-center items-center">
+    <h2>Bienvenido</h2>
   </div>
 </template>
 
@@ -11,3 +11,6 @@ export default Vue.extend({
   name: 'Home'
 });
 </script>
+<style lang="scss" scoped>
+@import './home';
+</style>
