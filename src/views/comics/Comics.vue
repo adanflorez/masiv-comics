@@ -46,7 +46,7 @@ export default Vue.extend({
         this.hideLoading();
       } catch (error) {
         this.hideLoading();
-        console.error(error);
+        this.$router.push('/error-404');
       }
     },
     /**
