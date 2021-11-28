@@ -13,7 +13,7 @@ const mutations: MutationTree<State> = {
    * @param {IComic} comic
    */
   [comicTypes.mutations.SET_COMIC]: (state, comic: IComic): void => {
-    state.comics.push({ num: comic.num, rating: 0 });
+    state.comics.push({ num: comic.num, rating: comic.rating });
   },
   /**
    * Update rating of comic
@@ -24,6 +24,15 @@ const mutations: MutationTree<State> = {
   [comicTypes.mutations.SET_COMIC_RATING]: (state, comic: IComic): void => {
     const index = state.comics.findIndex((item) => item.num == comic.num);
     if (index > -1) state.comics[index].rating = comic.rating;
+  },
+  /**
+   * Set current comic
+   *
+   * @param {State} state
+   * @param {IComic} comic
+   */
+  [comicTypes.mutations.SET_CURRENT_COMIC]: (state, comic: IComic): void => {
+    state.current = comic;
   }
 };
 

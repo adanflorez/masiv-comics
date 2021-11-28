@@ -64,13 +64,13 @@ export default Vue.extend({
      * Set rating of current comic
      */
     setRating(rating: number) {
-      this.comic.rating = rating;
+      this.setCurrentComic({ ...this.comic, rating });
       this.setComic(this.comic);
     },
     /**
      * comic actions
      */
-    ...mapActions('comic', ['setComic'])
+    ...mapActions('comic', ['setCurrentComic', 'setComic'])
   }
 });
 </script>
