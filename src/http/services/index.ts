@@ -2,8 +2,8 @@ import Response from '@/interfaces/response';
 import api from '../axios';
 
 class ComicServices {
-  getComic(): Promise<Response> {
-    return api.get('/2500/info.0.json');
+  getComic(comicNum: number): Promise<Response> {
+    return api.get(`/${comicNum}/info.0.json`);
   }
 }
 
