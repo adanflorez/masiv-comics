@@ -2,7 +2,7 @@ import Response from '@/interfaces/response';
 import api from '../axios';
 
 class ComicServices {
-  getComic(comicNum: number): Promise<Response> {
+  getComic(comicNum: string): Promise<Response> {
     return api.get(`/${comicNum}/info.0.json`);
   }
 }
