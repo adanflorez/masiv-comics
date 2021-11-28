@@ -1,0 +1,24 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--dark-slate);
+}
+
+li {
+  float: left;
+
+  a {
+    display: block;
+    color: var(--default-smoke);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #111;
+    }
+  }
+}

@@ -8,7 +8,7 @@
             Te invitamos a ver los mejores comics de romance, <br />
             sarcasmo, matemáticas y lenguaje.
           </p>
-          <a href="#!">Ver comics</a>
+          <router-link to="/comic">Ver comic</router-link>
         </div>
       </div>
     </div>
