@@ -31,7 +31,7 @@ export default Vue.extend({
      * get comics from https://xkcd.com/ API
      */
     async getComics() {
-      const res = await comicServices.getComic(2547);
+      const res = await comicServices.getComic(this.getRandomNumber);
       this.setCurrentComic(res.data);
     },
     /**
