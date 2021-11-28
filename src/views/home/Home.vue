@@ -8,7 +8,7 @@
             Te invitamos a ver los mejores comics de romance, <br />
             sarcasmo, matemáticas y lenguaje.
           </p>
-          <router-link to="/comic">Ver comic</router-link>
+          <router-link :to="`/comic/${comicNumber}`">Ver comic</router-link>
         </div>
       </div>
     </div>
@@ -18,9 +18,18 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { getRandomNumber } from '@/utils';
 
 export default Vue.extend({
-  name: 'Home'
+  name: 'Home',
+  computed: {
+    /**
+     * Returns a number between 1 and 2547 (comic quantity)
+     */
+    comicNumber(): number {
+      return getRandomNumber();
+    }
+  }
 });
 </script>
 <style lang="scss" scoped>

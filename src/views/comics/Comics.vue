@@ -1,6 +1,23 @@
 <template>
   <div class="my-6">
     <Comic :comic="current" />
+    <div class="flex justify-center mt-8">
+      <Button
+        class="mx-2"
+        :text="'Anterior'"
+        @click.native="nextOrPrevComic(false)"
+      />
+      <Button
+        class="mx-2"
+        :text="'Aleatorio'"
+        @click.native="goToRandomComic"
+      />
+      <Button
+        class="mx-2"
+        :text="'Siguiente'"
+        @click.native="nextOrPrevComic(true)"
+      />
+    </div>
   </div>
 </template>
 
@@ -8,19 +25,17 @@
 import Vue from 'vue';
 // components
 import Comic from '@/components/comic/Comic.vue';
+import Button from '@/components/common/ui/button/Button.vue';
 // services
 import comicServices from '@/http/services';
+// Vuex
 import { mapActions, mapState } from 'vuex';
+// Utils
+import { getRandomNumber } from '@/utils';
 
 export default Vue.extend({
-  components: { Comic },
+  components: { Comic, Button },
   computed: {
-    /**
-     * Returns a number between 1 and 2547 (comic quantity)
-     */
-    getRandomNumber(): number {
-      return Math.floor(Math.random() * 2547 + 1);
-    },
     ...mapState('comic', ['current'])
   },
   mounted() {
@@ -33,22 +48,50 @@ export default Vue.extend({
     async getComics() {
       try {
         this.showLoading();
-        const res = await comicServices.getComic(this.getRandomNumber);
+        const res = await comicServices.getComic(this.$route.params.id);
         this.setCurrentComic(res.data);
         this.hideLoading();
       } catch (error) {
         this.hideLoading();
-        console.error(error);
+        this.$router.push('/error-404');
       }
     },
     /**
-     * comic actions
+     * Next or previous comic page, depends of isNext
+     *
+     * @param {Boolean} isNext
+     */
+    nextOrPrevComic(isNext: boolean) {
+      const comicId = Number(this.$route.params.id);
+      if (isNext) {
+        this.$router.push(`/comic/${comicId + 1}`);
+      } else {
+        console.log('aca fueee');
+        this.$router.push(`/comic/${comicId - 1}`);
+      }
+    },
+    /**
+     * Go to random comic
+     */
+    goToRandomComic(): void {
+      this.$router.push(`/comic/${getRandomNumber()}`);
+    },
+    /**
+     * Store actions
      */
     ...mapActions({
       setCurrentComic: 'comic/setCurrentComic',
       showLoading: 'loading/showLoading',
       hideLoading: 'loading/hideLoading'
     })
+  },
+  watch: {
+    '$route.params.id': {
+      handler() {
+        this.getComics();
+      },
+      deep: true
+    }
   }
 });
 </script>

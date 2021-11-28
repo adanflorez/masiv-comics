@@ -12,14 +12,23 @@ const routes: Array<RouteConfig> = [
     component: Home
   },
   {
-    path: '/comic',
+    path: '',
     component: () => import('@/layouts/MainLayout.vue'),
     children: [
       {
-        path: '/',
+        path: '/comic/:id',
         component: Comic
       }
     ]
+  },
+  {
+    path: '/error-404',
+    name: 'Page404',
+    component: () => import('@/views/error/404/Page404.vue')
+  },
+  {
+    path: '*',
+    redirect: '/error-404'
   }
 ];
 
