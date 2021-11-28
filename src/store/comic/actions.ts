@@ -1,5 +1,5 @@
 import { ActionContext, ActionTree } from 'vuex';
-import comic, { State } from '.';
+import { State } from '.';
 // Types
 import comicTypes from '@/store/comic/types';
 // Interface

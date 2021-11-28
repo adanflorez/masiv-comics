@@ -20,6 +20,15 @@ const routes: Array<RouteConfig> = [
         component: Comic
       }
     ]
+  },
+  {
+    path: '/error-404',
+    name: 'Page404',
+    component: () => import('@/views/error/404/Page404.vue')
+  },
+  {
+    path: '*',
+    redirect: '/error-404'
   }
 ];
 
