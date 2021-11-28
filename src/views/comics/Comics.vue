@@ -31,13 +31,24 @@ export default Vue.extend({
      * get comics from https://xkcd.com/ API
      */
     async getComics() {
-      const res = await comicServices.getComic(this.getRandomNumber);
-      this.setCurrentComic(res.data);
+      try {
+        this.showLoading();
+        const res = await comicServices.getComic(this.getRandomNumber);
+        this.setCurrentComic(res.data);
+        this.hideLoading();
+      } catch (error) {
+        this.hideLoading();
+        console.error(error);
+      }
     },
     /**
      * comic actions
      */
-    ...mapActions('comic', ['setCurrentComic'])
+    ...mapActions({
+      setCurrentComic: 'comic/setCurrentComic',
+      showLoading: 'loading/showLoading',
+      hideLoading: 'loading/hideLoading'
+    })
   }
 });
 </script>
