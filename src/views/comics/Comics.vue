@@ -12,6 +12,7 @@ import Comic from '@/components/comic/Comic.vue';
 import comicServices from '@/http/services';
 // interfaces
 import IComic from '@/interfaces/comic';
+import { mapActions } from 'vuex';
 
 export default Vue.extend({
   components: { Comic },
@@ -34,9 +35,14 @@ export default Vue.extend({
      * get comics from https://xkcd.com/ API
      */
     async getComics() {
-      const res = await comicServices.getComic(this.getRandomNumber);
+      const res = await comicServices.getComic(2547);
       this.comic = res.data;
-    }
+      this.setComic(this.comic);
+    },
+    /**
+     * comic actions
+     */
+    ...mapActions('comic', ['setComic'])
   }
 });
 </script>
