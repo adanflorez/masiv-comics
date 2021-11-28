@@ -15,12 +15,6 @@ import { mapActions, mapState } from 'vuex';
 export default Vue.extend({
   components: { Comic },
   computed: {
-    /**
-     * Returns a number between 1 and 2547 (comic quantity)
-     */
-    getRandomNumber(): number {
-      return Math.floor(Math.random() * 2547 + 1);
-    },
     ...mapState('comic', ['current'])
   },
   mounted() {
@@ -33,7 +27,7 @@ export default Vue.extend({
     async getComics() {
       try {
         this.showLoading();
-        const res = await comicServices.getComic(this.getRandomNumber);
+        const res = await comicServices.getComic(this.$route.params.id);
         this.setCurrentComic(res.data);
         this.hideLoading();
       } catch (error) {

@@ -12,11 +12,11 @@ const routes: Array<RouteConfig> = [
     component: Home
   },
   {
-    path: '/comic',
+    path: '',
     component: () => import('@/layouts/MainLayout.vue'),
     children: [
       {
-        path: '/',
+        path: '/comic/:id',
         component: Comic
       }
     ]
