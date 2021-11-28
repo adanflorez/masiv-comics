@@ -7,7 +7,11 @@
         :text="'Anterior'"
         @click.native="nextOrPrevComic(false)"
       />
-      <Button class="mx-2" :text="'Aleatorio'" />
+      <Button
+        class="mx-2"
+        :text="'Aleatorio'"
+        @click.native="goToRandomComic"
+      />
       <Button
         class="mx-2"
         :text="'Siguiente'"
@@ -24,7 +28,10 @@ import Comic from '@/components/comic/Comic.vue';
 import Button from '@/components/common/ui/button/Button.vue';
 // services
 import comicServices from '@/http/services';
+// Vuex
 import { mapActions, mapState } from 'vuex';
+// Utils
+import { getRandomNumber } from '@/utils';
 
 export default Vue.extend({
   components: { Comic, Button },
@@ -62,6 +69,12 @@ export default Vue.extend({
         console.log('aca fueee');
         this.$router.push(`/comic/${comicId - 1}`);
       }
+    },
+    /**
+     * Go to random comic
+     */
+    goToRandomComic(): void {
+      this.$router.push(`/comic/${getRandomNumber()}`);
     },
     /**
      * Store actions
