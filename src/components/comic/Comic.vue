@@ -14,7 +14,7 @@
       </div>
       <div class="flex justify-center mt-8">
         <StarRating
-          v-model="rating"
+          v-model="comic.rating"
           :show-rating="false"
           :border-width="4"
           border-color="#d8d8d8"
@@ -36,6 +36,7 @@ import Vue, { PropOptions } from 'vue';
 import IComic from '@/interfaces/comic';
 // components
 import StarRating from 'vue-star-rating';
+import { mapActions } from 'vuex';
 
 export default Vue.extend({
   components: {
@@ -50,9 +51,6 @@ export default Vue.extend({
       type: Object
     } as PropOptions<IComic>
   },
-  data: () => ({
-    rating: 0
-  }),
   computed: {
     /**
      * returns a generic image in case of API error
@@ -66,8 +64,13 @@ export default Vue.extend({
      * Set rating of current comic
      */
     setRating(rating: number) {
-      console.log('id', this.comic.num, rating);
-    }
+      this.setCurrentComic({ ...this.comic, rating });
+      this.setComic(this.comic);
+    },
+    /**
+     * comic actions
+     */
+    ...mapActions('comic', ['setCurrentComic', 'setComic'])
   }
 });
 </script>

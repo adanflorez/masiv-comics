@@ -1,6 +1,6 @@
 <template>
   <div class="my-6">
-    <Comic :comic="comic" />
+    <Comic :comic="current" />
   </div>
 </template>
 
@@ -10,21 +10,18 @@ import Vue from 'vue';
 import Comic from '@/components/comic/Comic.vue';
 // services
 import comicServices from '@/http/services';
-// interfaces
-import IComic from '@/interfaces/comic';
+import { mapActions, mapState } from 'vuex';
 
 export default Vue.extend({
   components: { Comic },
-  data: () => ({
-    comic: {} as IComic
-  }),
   computed: {
     /**
      * Returns a number between 1 and 2547 (comic quantity)
      */
     getRandomNumber(): number {
       return Math.floor(Math.random() * 2547 + 1);
-    }
+    },
+    ...mapState('comic', ['current'])
   },
   mounted() {
     this.getComics();
@@ -35,8 +32,12 @@ export default Vue.extend({
      */
     async getComics() {
       const res = await comicServices.getComic(this.getRandomNumber);
-      this.comic = res.data;
-    }
+      this.setCurrentComic(res.data);
+    },
+    /**
+     * comic actions
+     */
+    ...mapActions('comic', ['setCurrentComic'])
   }
 });
 </script>
