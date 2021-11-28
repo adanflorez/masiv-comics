@@ -5,7 +5,7 @@ export default interface IComic {
   link?: string;
   month?: string;
   news?: string;
-  num: number;
+  num?: number;
   safe_title?: string;
   title?: string;
   transcript?: string;

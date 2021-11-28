@@ -7,10 +7,12 @@ const namespaced = true;
 
 export interface State {
   comics: Array<IComic>;
+  current: IComic;
 }
 
 const state: State = {
-  comics: []
+  comics: [],
+  current: {}
 };
 
 export default {
